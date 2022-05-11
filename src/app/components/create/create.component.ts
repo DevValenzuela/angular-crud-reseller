@@ -37,6 +37,7 @@ export class CreateComponent implements OnInit {
       this.productService.addProduct(this.validateForm.value)
         .subscribe(() => {
           this.isVisible = false;
+          this.validateForm.reset();
           this.loaderdata.emit();
         });
     } else {
