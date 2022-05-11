@@ -1,0 +1,53 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Create Product"
+  (nzOnCancel)="handleCancel()"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  [nzOkLoading]="isOkLoading"
+>
+  <ng-template #modalFooter></ng-template>
+  <ng-template #modalContent>
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="title">Product</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The title product is required">
+          <input nz-input formControlName="title" id="title"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="count">Cantidad</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The product count is required">
+          <input nz-input formControlName="count" id="count"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="state">State</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The product count is required">
+          <nz-select nzShowSearch nzAllowClear formControlName="state" nzPlaceHolder="Select">
+            <nz-option nzLabel="Completed" nzValue="1"></nz-option>
+            <nz-option nzLabel="Pending" nzValue="2"></nz-option>
+            <nz-option nzLabel="Cancel" nzValue="3"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6" nzErrorTip="Accept the terms">
+          <label nz-checkbox formControlName="agree" id="agree">
+            <span>
+             I accept the terms to upload the product
+            </span>
+          </label>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary">Add Product</button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-template>
+
+</nz-modal>
+
+<button nz-button nzType="primary" (click)="showModal()">Create New Product</button>

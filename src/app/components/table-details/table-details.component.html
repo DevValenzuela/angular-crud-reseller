@@ -1,0 +1,39 @@
+<div class="site-page-header-ghost-wrapper">
+  <nz-page-header nzBackIcon [nzGhost]="false">
+    <nz-page-header-title>Reseller</nz-page-header-title>
+    <nz-page-header-subtitle>Products in stock</nz-page-header-subtitle>
+    <nz-page-header-extra>
+     <app-create  (loaderdata)="loadData()"></app-create>
+    </nz-page-header-extra>
+  </nz-page-header>
+</div>
+<nz-table #smallTable
+          [nzPageSize]="3"
+          [nzScroll]="{ y: '240px' }"
+          [nzData]="listProduct"
+>
+  <thead>
+  <tr>
+    <th>Product</th>
+    <th>Count</th>
+    <th>State</th>
+    <th>Options</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of smallTable.data">
+    <td>{{ data.title }}</td>
+    <td>{{ data.count }}</td>
+    <td>
+      <nz-badge *ngIf="data.state == statePosition.Complete" nzStatus="success" nzText="Completed"></nz-badge>
+      <nz-badge *ngIf="data.state == statePosition.Pending" nzStatus="warning" nzText="Pending"></nz-badge>
+      <nz-badge *ngIf="data.state == statePosition.Cancel" nzStatus="error" nzText="Cancel"></nz-badge>
+    </td>
+    <td>
+      <app-delete [product]="data" (loaderDelete)="loadData()" ></app-delete>
+      <app-detail [product]="data"></app-detail>
+      <app-edit [product]="data" (loaderEdit)="loadData()" ></app-edit>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>

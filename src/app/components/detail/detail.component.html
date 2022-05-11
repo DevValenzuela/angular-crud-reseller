@@ -1,0 +1,19 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Detail"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzFooter]="modalFooter"
+  [nzOkLoading]="isOkLoading"
+>
+  <ng-template #modalFooter></ng-template>
+  <div *nzModalContent>
+    <p nz-typography nzType="secondary"><span nz-typography >Product:</span> {{product.title}}</p>
+    <p nz-typography nzType="secondary"><span nz-typography >Count:</span> {{product.count}}</p>
+    <p><nz-badge *ngIf="product.state == statePosition.Complete" nzStatus="success" nzText="Completed"></nz-badge></p>
+    <p><nz-badge *ngIf="product.state == statePosition.Pending" nzStatus="warning" nzText="Pending"></nz-badge></p>
+    <p><nz-badge *ngIf="product.state == statePosition.Cancel" nzStatus="error" nzText="Cancel"></nz-badge></p>
+  </div>
+</nz-modal>
+
+<button nz-button nzType="default" nzSize="large" nzShape="circle" (click)="showModal()"  ><i nz-icon nzType="file-done" nzTheme="outline"></i></button>
