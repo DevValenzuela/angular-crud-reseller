@@ -24,7 +24,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="state">State</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The state is required">
-          <nz-select nzPlaceHolder="Select" formControlName="state" [(ngModel)]="product.state" >
+          <nz-select nzPlaceHolder="Select" formControlName="state" id="state" [(ngModel)]="product.state" >
             <nz-option nzLabel="Completed" nzValue="1"></nz-option>
             <nz-option nzLabel="Pending" nzValue="2"></nz-option>
             <nz-option nzLabel="Cancel" nzValue="3"></nz-option>
