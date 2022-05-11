@@ -33,9 +33,12 @@ export class EditComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      this.productService.updateProduct(this.validateForm.value);
-      this.isVisible = false;
-      this.loaderEdit.emit();
+      this.productService.updateProduct(this.validateForm.value)
+        .subscribe(res => {
+          this.isVisible = false;
+          this.loaderEdit.emit();
+        });
+
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
