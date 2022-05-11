@@ -25,8 +25,10 @@ export class DeleteComponent implements OnInit {
 
   deleteOk(): void{
     const id = this.product.id;
-    this.productService.deleteProduct(id);
-    this.loaderDelete.emit();
+    this.productService.deleteProduct(id)
+      .subscribe(res => {
+        this.loaderDelete.emit();
+      });
   }
 
   showDeleteConfirm(): void {
